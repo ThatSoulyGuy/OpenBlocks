@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "RSR",
+    "GRG"
+  ],
+  "key": {
+    "G": { "item": "minecraft:glowstone_dust" },
+    "R": { "item": "minecraft:redstone" },
+    "S": { "item": "minecraft:stone" }
+  },
+  "result": {
+    "id": "openblocks:guide",
+    "count": 1
+  }
+}

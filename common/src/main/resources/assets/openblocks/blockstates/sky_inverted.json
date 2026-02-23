@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "inverted=false,powered=false": { "model": "openblocks:block/sky_inverted" },
+    "inverted=false,powered=true": { "model": "openblocks:block/sky_inverted" },
+    "inverted=true,powered=false": { "model": "openblocks:block/sky_inverted" },
+    "inverted=true,powered=true": { "model": "openblocks:block/sky_inverted" }
+  }
+}

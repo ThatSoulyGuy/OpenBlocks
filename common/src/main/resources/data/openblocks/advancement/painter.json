@@ -1,0 +1,23 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:paint_brush" },
+    "title": { "translate": "advancement.openblocks.painter.title" },
+    "description": { "translate": "advancement.openblocks.painter.description" }
+  },
+  "criteria": {
+    "has_brush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:paint_brush" }]
+      }
+    },
+    "has_canvas": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:canvas" }]
+      }
+    }
+  },
+  "requirements": [["has_brush"], ["has_canvas"]]
+}

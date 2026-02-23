@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "openblocks:block/grave" },
+    "facing=south": { "model": "openblocks:block/grave", "y": 180 },
+    "facing=east": { "model": "openblocks:block/grave", "y": 90 },
+    "facing=west": { "model": "openblocks:block/grave", "y": 270 }
+  }
+}

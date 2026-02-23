@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [" E ", " S ", " S "],
+  "key": {
+    "E": { "item": "minecraft:ender_pearl" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": { "id": "openblocks:cursor", "count": 1 }
+}

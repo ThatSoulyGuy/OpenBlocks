@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "openblocks:block/target_front",
+    "leg": "openblocks:block/target_leg",
+    "front": "openblocks:block/target_front",
+    "back": "openblocks:block/target_back"
+  },
+  "elements": [
+    {
+      "name": "leg_west",
+      "from": [0, 0, 0],
+      "to": [1, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 5, 1, 4], "texture": "#leg", "cullface": "north"},
+        "east": {"uv": [0, 0, 16, 1], "texture": "#leg"},
+        "south": {"uv": [15, 4, 16, 5], "texture": "#leg", "cullface": "south"},
+        "west": {"uv": [0, 1, 16, 2], "texture": "#leg", "cullface": "west"},
+        "up": {"uv": [0, 2, 16, 3], "texture": "#leg", "rotation": 90},
+        "down": {"uv": [0, 3, 16, 4], "texture": "#leg", "rotation": 90, "cullface": "down"}
+      }
+    },
+    {
+      "name": "leg_east",
+      "from": [15, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 5, 1, 4], "texture": "#leg", "cullface": "north"},
+        "east": {"uv": [0, 0, 16, 1], "texture": "#leg", "cullface": "east"},
+        "south": {"uv": [15, 4, 16, 5], "texture": "#leg", "cullface": "south"},
+        "west": {"uv": [0, 1, 16, 2], "texture": "#leg"},
+        "up": {"uv": [0, 2, 16, 3], "texture": "#leg", "rotation": 90},
+        "down": {"uv": [0, 3, 16, 4], "texture": "#leg", "rotation": 90, "cullface": "down"}
+      }
+    },
+    {
+      "name": "plate",
+      "from": [0, 1, 0],
+      "to": [16, 2, 15],
+      "faces": {
+        "north": {"uv": [0, 15, 16, 16], "texture": "#front", "cullface": "north"},
+        "east": {"uv": [0, 15, 15, 16], "texture": "#back", "cullface": "east"},
+        "south": {"uv": [0, 15, 16, 16], "texture": "#back"},
+        "west": {"uv": [0, 15, 15, 16], "texture": "#back", "cullface": "west"},
+        "up": {"uv": [0, 0, 16, 15], "texture": "#front"},
+        "down": {"uv": [0, 0, 16, 15], "texture": "#back"}
+      }
+    }
+  ]
+}

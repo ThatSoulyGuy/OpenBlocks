@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["IGI", "G G"],
+  "key": {
+    "I": { "item": "minecraft:gold_ingot" },
+    "G": { "item": "minecraft:glass_pane" }
+  },
+  "result": { "id": "openblocks:crayon_glasses", "count": 1 }
+}

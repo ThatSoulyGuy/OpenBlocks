@@ -1,0 +1,16 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:hang_glider" },
+    "title": { "translate": "advancement.openblocks.glider.title" },
+    "description": { "translate": "advancement.openblocks.glider.description" }
+  },
+  "criteria": {
+    "has_glider": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:hang_glider" }]
+      }
+    }
+  }
+}

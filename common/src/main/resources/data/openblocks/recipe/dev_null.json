@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["SSS", "SRS", "SSS"],
+  "key": {
+    "S": { "item": "minecraft:cobblestone" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "id": "openblocks:dev_null", "count": 1 }
+}

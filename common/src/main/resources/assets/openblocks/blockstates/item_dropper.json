@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "openblocks:block/item_dropper" },
+    "facing=south": { "model": "openblocks:block/item_dropper", "y": 180 },
+    "facing=east": { "model": "openblocks:block/item_dropper", "y": 90 },
+    "facing=west": { "model": "openblocks:block/item_dropper", "y": 270 },
+    "facing=up": { "model": "openblocks:block/item_dropper", "x": 270 },
+    "facing=down": { "model": "openblocks:block/item_dropper", "x": 90 }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:bear_trap" },
+    "title": { "translate": "advancement.openblocks.bear_trap.title" },
+    "description": { "translate": "advancement.openblocks.bear_trap.description" }
+  },
+  "criteria": {
+    "has_bear_trap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:bear_trap" }]
+      }
+    }
+  }
+}

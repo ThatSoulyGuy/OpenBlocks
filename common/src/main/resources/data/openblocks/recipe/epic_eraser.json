@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "O",
+    "S"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "openblocks:sponge"
+    }
+  },
+  "result": {
+    "id": "openblocks:epic_eraser",
+    "count": 1
+  }
+}

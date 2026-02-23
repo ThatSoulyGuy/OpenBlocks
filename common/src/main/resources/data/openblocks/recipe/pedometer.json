@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "C",
+    "M"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "M": {
+      "item": "minecraft:compass"
+    }
+  },
+  "result": {
+    "id": "openblocks:pedometer",
+    "count": 1
+  }
+}

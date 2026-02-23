@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["DND", "N N"],
+  "key": {
+    "D": { "item": "minecraft:diamond" },
+    "N": { "item": "minecraft:note_block" }
+  },
+  "result": { "id": "openblocks:sonic_glasses", "count": 1 }
+}

@@ -1,0 +1,16 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:tank" },
+    "title": { "translate": "advancement.openblocks.tank_fill.title" },
+    "description": { "translate": "advancement.openblocks.tank_fill.description" }
+  },
+  "criteria": {
+    "has_tank": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:tank" }]
+      }
+    }
+  }
+}

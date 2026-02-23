@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "all": "openblocks:block/big_button",
+    "particle": "openblocks:block/big_button"
+  },
+  "elements": [
+    {
+      "from": [1, 0, 1],
+      "to": [15, 1, 15],
+      "faces": {
+        "north": {"texture": "#all", "uv": [0, 0, 14, 1]},
+        "east": {"texture": "#all", "uv": [0, 0, 14, 1]},
+        "south": {"texture": "#all", "uv": [0, 0, 14, 1]},
+        "west": {"texture": "#all", "uv": [0, 0, 14, 1]},
+        "up": {"texture": "#all", "uv": [0, 0, 14, 14]},
+        "down": {"texture": "#all", "uv": [0, 0, 14, 14], "cullface": "down"}
+      }
+    }
+  ]
+}

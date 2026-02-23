@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "openblocks:block/projector_bottom",
+    "top": "openblocks:block/projector_top",
+    "side": "openblocks:block/projector_side"
+  }
+}

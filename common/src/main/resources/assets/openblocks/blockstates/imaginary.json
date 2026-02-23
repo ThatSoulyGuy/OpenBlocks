@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "type=pencil": { "model": "openblocks:block/imaginary" },
+    "type=crayon": { "model": "openblocks:block/imaginary" }
+  }
+}

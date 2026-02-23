@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "openblocks:block/elevator_rotating" },
+    "facing=east": { "model": "openblocks:block/elevator_rotating", "y": 90 },
+    "facing=south": { "model": "openblocks:block/elevator_rotating", "y": 180 },
+    "facing=west": { "model": "openblocks:block/elevator_rotating", "y": 270 }
+  }
+}

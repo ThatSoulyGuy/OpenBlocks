@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "color=white": { "model": "openblocks:block/elevator" },
+    "color=orange": { "model": "openblocks:block/elevator" },
+    "color=magenta": { "model": "openblocks:block/elevator" },
+    "color=light_blue": { "model": "openblocks:block/elevator" },
+    "color=yellow": { "model": "openblocks:block/elevator" },
+    "color=lime": { "model": "openblocks:block/elevator" },
+    "color=pink": { "model": "openblocks:block/elevator" },
+    "color=gray": { "model": "openblocks:block/elevator" },
+    "color=light_gray": { "model": "openblocks:block/elevator" },
+    "color=cyan": { "model": "openblocks:block/elevator" },
+    "color=purple": { "model": "openblocks:block/elevator" },
+    "color=blue": { "model": "openblocks:block/elevator" },
+    "color=brown": { "model": "openblocks:block/elevator" },
+    "color=green": { "model": "openblocks:block/elevator" },
+    "color=red": { "model": "openblocks:block/elevator" },
+    "color=black": { "model": "openblocks:block/elevator" }
+  }
+}

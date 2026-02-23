@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "openblocks:block/xp_bottler_front",
+    "down": "openblocks:block/xp_bottler_bottom",
+    "up": "openblocks:block/xp_bottler_top",
+    "north": "openblocks:block/xp_bottler_front",
+    "south": "openblocks:block/xp_bottler_back",
+    "east": "openblocks:block/xp_bottler_side",
+    "west": "openblocks:block/xp_bottler_side"
+  }
+}

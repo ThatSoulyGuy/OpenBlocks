@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=up,powered=false": { "model": "openblocks:block/big_button_wood" },
+    "facing=up,powered=true": { "model": "openblocks:block/big_button_wood_pressed" },
+    "facing=down,powered=false": { "model": "openblocks:block/big_button_wood", "x": 180 },
+    "facing=down,powered=true": { "model": "openblocks:block/big_button_wood_pressed", "x": 180 },
+    "facing=north,powered=false": { "model": "openblocks:block/big_button_wood", "x": 90 },
+    "facing=north,powered=true": { "model": "openblocks:block/big_button_wood_pressed", "x": 90 },
+    "facing=south,powered=false": { "model": "openblocks:block/big_button_wood", "x": 90, "y": 180 },
+    "facing=south,powered=true": { "model": "openblocks:block/big_button_wood_pressed", "x": 90, "y": 180 },
+    "facing=west,powered=false": { "model": "openblocks:block/big_button_wood", "x": 90, "y": 270 },
+    "facing=west,powered=true": { "model": "openblocks:block/big_button_wood_pressed", "x": 90, "y": 270 },
+    "facing=east,powered=false": { "model": "openblocks:block/big_button_wood", "x": 90, "y": 90 },
+    "facing=east,powered=true": { "model": "openblocks:block/big_button_wood_pressed", "x": 90, "y": 90 }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": { "id": "openblocks:elevator" },
+    "title": { "translate": "advancement.openblocks.root.title" },
+    "description": { "translate": "advancement.openblocks.root.description" },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_elevator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:elevator" }]
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "openblocks:block/drawing_table",
+    "top": "openblocks:block/drawing_table_top",
+    "side": "openblocks:block/drawing_table_front"
+  }
+}

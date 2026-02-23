@@ -1,0 +1,23 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:block_breaker" },
+    "title": { "translate": "advancement.openblocks.automation.title" },
+    "description": { "translate": "advancement.openblocks.automation.description" }
+  },
+  "criteria": {
+    "has_breaker": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:block_breaker" }]
+      }
+    },
+    "has_placer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:block_placer" }]
+      }
+    }
+  },
+  "requirements": [["has_breaker"], ["has_placer"]]
+}

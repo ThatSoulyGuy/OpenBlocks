@@ -1,0 +1,7 @@
+{
+  "textures": {
+    "particle": "openblocks:block/pencil_block",
+    "pencil": "openblocks:block/pencil_block",
+    "crayon": "openblocks:block/crayon_block"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    "PP ",
+    "PP "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:oak_button"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "result": {
+    "id": "openblocks:big_button_wood",
+    "count": 1
+  }
+}

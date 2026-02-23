@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "closed=false": { "model": "openblocks:block/bear_trap_open" },
+    "closed=true": { "model": "openblocks:block/bear_trap_closed" }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "elevator_activate": {
+    "sounds": [
+      "openblocks:elevator_activate"
+    ]
+  },
+  "bear_trap_close": {
+    "sounds": [
+      "openblocks:bear_trap_close"
+    ]
+  },
+  "bear_trap_open": {
+    "sounds": [
+      "openblocks:bear_trap_open"
+    ]
+  },
+  "cannon_fire": {
+    "sounds": [
+      "openblocks:cannon_fire"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "active=false": { "model": "openblocks:block/projector" },
+    "active=true": { "model": "openblocks:block/projector" }
+  }
+}

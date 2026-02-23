@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    "openblocks:elevator",
+    "openblocks:sponge",
+    "openblocks:sky",
+    "openblocks:sky_inverted",
+    "openblocks:heal",
+    "openblocks:big_button",
+    "openblocks:big_button_wood",
+    "openblocks:fan",
+    "openblocks:bear_trap",
+    "openblocks:cannon",
+    "openblocks:village_highlighter",
+    "openblocks:donation_station",
+    "openblocks:elevator_rotating",
+    "openblocks:sprinkler",
+    "openblocks:tank",
+    "openblocks:xp_drain",
+    "openblocks:xp_bottler",
+    "openblocks:xp_shower",
+    "openblocks:block_breaker",
+    "openblocks:block_placer",
+    "openblocks:vacuum_hopper",
+    "openblocks:item_dropper",
+    "openblocks:auto_anvil",
+    "openblocks:auto_enchantment_table",
+    "openblocks:canvas",
+    "openblocks:canvas_glass",
+    "openblocks:paint_can",
+    "openblocks:paint_mixer"
+  ]
+}

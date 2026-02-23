@@ -1,0 +1,16 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:grave" },
+    "title": { "translate": "advancement.openblocks.grave_digger.title" },
+    "description": { "translate": "advancement.openblocks.grave_digger.description" }
+  },
+  "criteria": {
+    "has_grave": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:grave" }]
+      }
+    }
+  }
+}

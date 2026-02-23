@@ -1,0 +1,35 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:pencil_glasses" },
+    "title": { "translate": "advancement.openblocks.glasses.title" },
+    "description": { "translate": "advancement.openblocks.glasses.description" }
+  },
+  "criteria": {
+    "has_pencil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:pencil_glasses" }]
+      }
+    },
+    "has_crayon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:crayon_glasses" }]
+      }
+    },
+    "has_technicolor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:technicolor_glasses" }]
+      }
+    },
+    "has_sonic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:sonic_glasses" }]
+      }
+    }
+  },
+  "requirements": [["has_pencil", "has_crayon", "has_technicolor", "has_sonic"]]
+}

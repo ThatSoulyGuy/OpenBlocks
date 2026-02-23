@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "openblocks:block/donation_station" }
+  }
+}

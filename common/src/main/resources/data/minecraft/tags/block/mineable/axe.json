@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "openblocks:ladder",
+    "openblocks:rope_ladder",
+    "openblocks:scaffolding",
+    "openblocks:target"
+  ]
+}

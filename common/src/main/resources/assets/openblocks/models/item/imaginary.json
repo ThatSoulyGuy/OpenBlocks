@@ -1,0 +1,24 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "openblocks:item/pencil"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "openblocks:item/imaginary_crayon_white" },
+    { "predicate": { "custom_model_data": 2 }, "model": "openblocks:item/imaginary_crayon_orange" },
+    { "predicate": { "custom_model_data": 3 }, "model": "openblocks:item/imaginary_crayon_magenta" },
+    { "predicate": { "custom_model_data": 4 }, "model": "openblocks:item/imaginary_crayon_light_blue" },
+    { "predicate": { "custom_model_data": 5 }, "model": "openblocks:item/imaginary_crayon_yellow" },
+    { "predicate": { "custom_model_data": 6 }, "model": "openblocks:item/imaginary_crayon_lime" },
+    { "predicate": { "custom_model_data": 7 }, "model": "openblocks:item/imaginary_crayon_pink" },
+    { "predicate": { "custom_model_data": 8 }, "model": "openblocks:item/imaginary_crayon_gray" },
+    { "predicate": { "custom_model_data": 9 }, "model": "openblocks:item/imaginary_crayon_light_gray" },
+    { "predicate": { "custom_model_data": 10 }, "model": "openblocks:item/imaginary_crayon_cyan" },
+    { "predicate": { "custom_model_data": 11 }, "model": "openblocks:item/imaginary_crayon_purple" },
+    { "predicate": { "custom_model_data": 12 }, "model": "openblocks:item/imaginary_crayon_blue" },
+    { "predicate": { "custom_model_data": 13 }, "model": "openblocks:item/imaginary_crayon_brown" },
+    { "predicate": { "custom_model_data": 14 }, "model": "openblocks:item/imaginary_crayon_green" },
+    { "predicate": { "custom_model_data": 15 }, "model": "openblocks:item/imaginary_crayon_red" },
+    { "predicate": { "custom_model_data": 16 }, "model": "openblocks:item/imaginary_crayon_black" }
+  ]
+}

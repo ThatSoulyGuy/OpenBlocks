@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "openblocks:item/paint_brush",
+    "layer1": "openblocks:item/paint_brush_overlay"
+  }
+}

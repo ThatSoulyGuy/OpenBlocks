@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "openblocks"
+version = "${version}"
+displayName = "OpenBlocks"
+description = "All the things you never thought you will ever need"
+authors = "Mikee, NeverCast, boq, Lyqyd, ThatSoulyGuy"
+# logoFile = "assets/openblocks/icon.png"
+
+[[dependencies.openblocks]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.openblocks]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.openblocks]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.0,)"
+ordering = "AFTER"
+side = "BOTH"

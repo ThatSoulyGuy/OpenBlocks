@@ -1,0 +1,10 @@
+architectury {
+    common 'fabric', 'neoforge'
+}
+
+dependencies {
+    modImplementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
+
+    // Cloth Config (common)
+    modImplementation "me.shedaniel.cloth:cloth-config:${rootProject.cloth_config_version}"
+}

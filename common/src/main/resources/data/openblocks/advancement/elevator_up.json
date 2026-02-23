@@ -1,0 +1,16 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:elevator_rotating" },
+    "title": { "translate": "advancement.openblocks.elevator_up.title" },
+    "description": { "translate": "advancement.openblocks.elevator_up.description" }
+  },
+  "criteria": {
+    "has_elevator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:elevator_rotating" }]
+      }
+    }
+  }
+}

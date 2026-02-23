@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "openblocks:block/trophy", "y": 0 },
+    "facing=east": { "model": "openblocks:block/trophy", "y": 90 },
+    "facing=south": { "model": "openblocks:block/trophy", "y": 180 },
+    "facing=west": { "model": "openblocks:block/trophy", "y": 270 }
+  }
+}

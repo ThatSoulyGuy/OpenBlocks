@@ -1,0 +1,42 @@
+{
+  "parent": "openblocks:root",
+  "display": {
+    "icon": { "id": "openblocks:wrench" },
+    "title": { "translate": "advancement.openblocks.all_tools.title" },
+    "description": { "translate": "advancement.openblocks.all_tools.description" },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "has_cursor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:cursor" }]
+      }
+    },
+    "has_dev_null": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:dev_null" }]
+      }
+    },
+    "has_wrench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:wrench" }]
+      }
+    },
+    "has_slimalyzer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:slimalyzer" }]
+      }
+    },
+    "has_pedometer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "openblocks:pedometer" }]
+      }
+    }
+  },
+  "requirements": [["has_cursor"], ["has_dev_null"], ["has_wrench"], ["has_slimalyzer"], ["has_pedometer"]]
+}

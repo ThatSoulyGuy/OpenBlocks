@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "openblocks:sky_inverted"
+    }
+  ],
+  "result": {
+    "id": "openblocks:sky",
+    "count": 1
+  }
+}

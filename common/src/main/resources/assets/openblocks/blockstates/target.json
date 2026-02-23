@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "powered=false": { "model": "openblocks:block/target" },
+    "powered=true": { "model": "openblocks:block/target_powered" }
+  }
+}
