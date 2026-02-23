@@ -21,7 +21,7 @@ public abstract class OpenBlocksContainerScreen<T extends AbstractContainerMenu>
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         ResourceLocation texture = getBackgroundTexture();
         if (texture != null) {
-            guiGraphics.blit(texture, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+            guiGraphics.blit(texture, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
         }
     }
 

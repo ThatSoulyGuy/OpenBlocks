@@ -115,12 +115,10 @@ public final class OpenBlocksCreativeTabs {
 
         // Pencil (imaginary item, no color)
         safeAccept(output, ImaginaryBlockItem.createPencil());
-        safeAccept(output, ImaginaryBlockItem.createPencilInverted());
 
-        // Crayons (imaginary item, one per color, normal + inverted)
+        // Crayons (imaginary item, one per color)
         for (ColorMeta color : ColorMeta.values()) {
             safeAccept(output, ImaginaryBlockItem.createCrayon(color.getRgb()));
-            safeAccept(output, ImaginaryBlockItem.createCrayonInverted(color.getRgb()));
         }
 
         // Stencil variants

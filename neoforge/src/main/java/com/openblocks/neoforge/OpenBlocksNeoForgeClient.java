@@ -23,7 +23,6 @@ import com.openblocks.projector.ProjectorBlockEntityRenderer;
 import com.openblocks.tank.TankBlockEntityRenderer;
 import com.openblocks.trophy.TrophyBlockEntityRenderer;
 import dev.architectury.event.events.client.ClientTickEvent;
-import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.world.item.DyeColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,6 +30,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
@@ -144,19 +144,21 @@ public final class OpenBlocksNeoForgeClient {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        // Screen factories and tick events — safe to register during FMLClientSetupEvent
+        // Tick events and debug overlay — safe to register during FMLClientSetupEvent
         ClientTickEvent.CLIENT_POST.register(ElevatorInputHandler::onClientTick);
         DebugOverlay.register();
+    }
 
-        event.enqueueWork(() -> {
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.VACUUM_HOPPER.get(), VacuumHopperScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.ITEM_DROPPER.get(), ItemDropperScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.AUTO_ANVIL.get(), AutoAnvilScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.AUTO_ENCHANTMENT_TABLE.get(), AutoEnchantmentTableScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.BLOCK_PLACER.get(), BlockPlacerScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.DONATION_STATION.get(), DonationStationScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.DEV_NULL.get(), DevNullScreen::new);
-            MenuRegistry.registerScreenFactory(OpenBlocksMenus.DRAWING_TABLE.get(), DrawingTableScreen::new);
-        });
+    @SubscribeEvent
+    public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
+        // Screen factories — must use NeoForge's native event (Architectury MenuRegistry is broken on NeoForge 1.21.1)
+        event.register(OpenBlocksMenus.VACUUM_HOPPER.get(), VacuumHopperScreen::new);
+        event.register(OpenBlocksMenus.ITEM_DROPPER.get(), ItemDropperScreen::new);
+        event.register(OpenBlocksMenus.AUTO_ANVIL.get(), AutoAnvilScreen::new);
+        event.register(OpenBlocksMenus.AUTO_ENCHANTMENT_TABLE.get(), AutoEnchantmentTableScreen::new);
+        event.register(OpenBlocksMenus.BLOCK_PLACER.get(), BlockPlacerScreen::new);
+        event.register(OpenBlocksMenus.DONATION_STATION.get(), DonationStationScreen::new);
+        event.register(OpenBlocksMenus.DEV_NULL.get(), DevNullScreen::new);
+        event.register(OpenBlocksMenus.DRAWING_TABLE.get(), DrawingTableScreen::new);
     }
 }

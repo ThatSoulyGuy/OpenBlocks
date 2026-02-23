@@ -36,7 +36,7 @@ public class ImaginaryBlockItem extends Item {
         Player player = context.getPlayer();
         if (player == null) return InteractionResult.PASS;
 
-        // Shift-click to toggle inverted mode
+        // Shift-click to cycle placement mode
         if (player.isShiftKeyDown()) {
             return InteractionResult.PASS;
         }
@@ -49,12 +49,12 @@ public class ImaginaryBlockItem extends Item {
         }
 
         ItemStack stack = context.getItemInHand();
+        PlacementMode mode = getPlacementMode(stack);
         float uses = getUses(stack);
-        if (uses <= 0) return InteractionResult.FAIL;
+        if (uses < mode.getCost()) return InteractionResult.FAIL;
 
         if (!level.isClientSide()) {
             Integer color = getColor(stack);
-            boolean inverted = isInverted(stack);
             ImaginaryType type = color == null ? ImaginaryType.PENCIL : ImaginaryType.CRAYON;
 
             BlockState state = OpenBlocksBlocks.IMAGINARY.get().defaultBlockState()
@@ -63,11 +63,12 @@ public class ImaginaryBlockItem extends Item {
 
             if (level.getBlockEntity(placePos) instanceof ImaginaryBlockEntity be) {
                 be.setColor(color);
-                be.setInverted(inverted);
+                be.setInverted(mode.isInverted());
+                be.setShape(mode.getShape());
+                be.setFacing(player.getDirection());
             }
 
-            float cost = inverted ? 1.5f : 1.0f;
-            setUses(stack, uses - cost);
+            setUses(stack, uses - mode.getCost());
             if (getUses(stack) <= 0 && !player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
@@ -81,11 +82,11 @@ public class ImaginaryBlockItem extends Item {
         if (player.isShiftKeyDown()) {
             ItemStack stack = player.getItemInHand(hand);
             if (!level.isClientSide()) {
-                boolean current = isInverted(stack);
-                setInverted(stack, !current);
-                String mode = current ? "openblocks.misc.mode.block" : "openblocks.misc.mode.inverted_block";
+                PlacementMode current = getPlacementMode(stack);
+                PlacementMode next = current.next();
+                setPlacementMode(stack, next);
                 player.displayClientMessage(Component.translatable("openblocks.misc.change_mode",
-                        Component.translatable(mode)), true);
+                        next.getDisplayName()), true);
             }
             return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
         }
@@ -104,6 +105,9 @@ public class ImaginaryBlockItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        PlacementMode mode = getPlacementMode(stack);
+        tooltipComponents.add(mode.getDisplayName());
+
         float uses = getUses(stack);
         tooltipComponents.add(Component.translatable("openblocks.misc.uses", String.format("%.1f", uses)));
 
@@ -111,10 +115,6 @@ public class ImaginaryBlockItem extends Item {
         if (color != null) {
             tooltipComponents.add(Component.translatable("openblocks.misc.color",
                     String.format("#%06X", color)));
-        }
-
-        if (isInverted(stack)) {
-            tooltipComponents.add(Component.translatable("openblocks.misc.mode.inverted_block"));
         }
     }
 
@@ -164,14 +164,17 @@ public class ImaginaryBlockItem extends Item {
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
 
-    public static boolean isInverted(ItemStack stack) {
+    public static PlacementMode getPlacementMode(ItemStack stack) {
         CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        return tag.getBoolean("Inverted");
+        if (tag.contains("Mode")) {
+            return PlacementMode.fromOrdinal(tag.getInt("Mode"));
+        }
+        return PlacementMode.BLOCK;
     }
 
-    public static void setInverted(ItemStack stack, boolean inverted) {
+    public static void setPlacementMode(ItemStack stack, PlacementMode mode) {
         CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        tag.putBoolean("Inverted", inverted);
+        tag.putInt("Mode", mode.ordinal());
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
 
@@ -187,18 +190,6 @@ public class ImaginaryBlockItem extends Item {
         ItemStack stack = new ItemStack(com.openblocks.core.registry.OpenBlocksItems.IMAGINARY_ITEM.get());
         setColor(stack, color);
         setUses(stack, OpenBlocksConfig.Imaginary.itemUseCount);
-        return stack;
-    }
-
-    public static ItemStack createPencilInverted() {
-        ItemStack stack = createPencil();
-        setInverted(stack, true);
-        return stack;
-    }
-
-    public static ItemStack createCrayonInverted(int color) {
-        ItemStack stack = createCrayon(color);
-        setInverted(stack, true);
         return stack;
     }
 }

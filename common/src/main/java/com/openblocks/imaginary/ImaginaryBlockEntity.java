@@ -3,6 +3,7 @@ package com.openblocks.imaginary;
 import com.openblocks.core.base.OpenBlocksBlockEntity;
 import com.openblocks.core.registry.OpenBlocksBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,6 +19,8 @@ public class ImaginaryBlockEntity extends OpenBlocksBlockEntity {
 
     private Integer color; // null = pencil (gray), non-null = crayon RGB
     private boolean inverted;
+    private ImaginaryShape shape = ImaginaryShape.BLOCK;
+    private Direction facing = Direction.SOUTH;
 
     // Client-side fade animation
     private float visibility = 0.0f;
@@ -45,6 +48,24 @@ public class ImaginaryBlockEntity extends OpenBlocksBlockEntity {
 
     public void setInverted(boolean inverted) {
         this.inverted = inverted;
+        sync();
+    }
+
+    public ImaginaryShape getShape() {
+        return shape;
+    }
+
+    public void setShape(ImaginaryShape shape) {
+        this.shape = shape;
+        sync();
+    }
+
+    public Direction getFacing() {
+        return facing;
+    }
+
+    public void setFacing(Direction facing) {
+        this.facing = facing;
         sync();
     }
 
@@ -102,6 +123,8 @@ public class ImaginaryBlockEntity extends OpenBlocksBlockEntity {
             tag.putInt("Color", color);
         }
         tag.putBoolean("Inverted", inverted);
+        tag.putInt("Shape", shape.ordinal());
+        tag.putInt("Facing", facing.get2DDataValue());
     }
 
     @Override
@@ -113,5 +136,9 @@ public class ImaginaryBlockEntity extends OpenBlocksBlockEntity {
             color = null;
         }
         inverted = tag.getBoolean("Inverted");
+        shape = ImaginaryShape.fromOrdinal(tag.getInt("Shape"));
+        if (tag.contains("Facing")) {
+            facing = Direction.from2DDataValue(tag.getInt("Facing"));
+        }
     }
 }

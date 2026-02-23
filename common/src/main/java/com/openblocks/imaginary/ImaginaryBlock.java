@@ -69,10 +69,10 @@ public class ImaginaryBlock extends OpenBlocksEntityBlock {
             if (player == null) {
                 // No player context (particle engine, etc.) — return full shape to
                 // prevent crashes from VoxelShape.bounds() on empty shapes.
-                return Shapes.block();
+                return be.getShape().getVoxelShape(be.getFacing());
             }
             if (be.isSelectableFor(player)) {
-                return Shapes.block();
+                return be.getShape().getVoxelShape(be.getFacing());
             }
         }
         return Shapes.empty();
@@ -81,15 +81,16 @@ public class ImaginaryBlock extends OpenBlocksEntityBlock {
     @Override
     protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (level.getBlockEntity(pos) instanceof ImaginaryBlockEntity be) {
+            VoxelShape shape = be.getShape().getVoxelShape(be.getFacing());
             Player player = getPlayerFromContext(context);
             if (player != null && be.isSolidFor(player)) {
-                return Shapes.block();
+                return shape;
             }
             // For non-player entities, pencil blocks are always solid (unless inverted)
             if (player == null) {
                 boolean solidByDefault = be.isPencil();
                 if (solidByDefault != be.isInverted()) {
-                    return Shapes.block();
+                    return shape;
                 }
             }
         }
