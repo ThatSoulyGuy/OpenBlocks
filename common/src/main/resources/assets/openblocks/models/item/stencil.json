@@ -2,5 +2,18 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "openblocks:item/stencil"
-  }
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "openblocks:item/stencil_creeper_face" },
+    { "predicate": { "custom_model_data": 2 }, "model": "openblocks:item/stencil_border" },
+    { "predicate": { "custom_model_data": 3 }, "model": "openblocks:item/stencil_stripes" },
+    { "predicate": { "custom_model_data": 4 }, "model": "openblocks:item/stencil_corner" },
+    { "predicate": { "custom_model_data": 5 }, "model": "openblocks:item/stencil_heart" },
+    { "predicate": { "custom_model_data": 6 }, "model": "openblocks:item/stencil_diamond" },
+    { "predicate": { "custom_model_data": 7 }, "model": "openblocks:item/stencil_cross" },
+    { "predicate": { "custom_model_data": 8 }, "model": "openblocks:item/stencil_skull" },
+    { "predicate": { "custom_model_data": 9 }, "model": "openblocks:item/stencil_arrow" },
+    { "predicate": { "custom_model_data": 10 }, "model": "openblocks:item/stencil_circle" },
+    { "predicate": { "custom_model_data": 11 }, "model": "openblocks:item/stencil_star" }
+  ]
 }

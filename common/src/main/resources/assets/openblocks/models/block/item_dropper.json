@@ -1,4 +1,5 @@
 {
+  "render_type": "minecraft:cutout",
   "parent": "minecraft:block/orientable",
   "textures": {
     "front": "openblocks:block/item_dropper_front",

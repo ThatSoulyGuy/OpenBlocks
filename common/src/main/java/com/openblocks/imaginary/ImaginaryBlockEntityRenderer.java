@@ -78,8 +78,8 @@ public class ImaginaryBlockEntityRenderer implements BlockEntityRenderer<Imagina
         Direction facing = be.getFacing();
         float rotationDeg = switch (facing) {
             case NORTH -> 180;
-            case EAST -> 270;
-            case WEST -> 90;
+            case EAST -> 90;
+            case WEST -> 270;
             default -> 0; // SOUTH is default orientation
         };
         if (rotationDeg != 0) {

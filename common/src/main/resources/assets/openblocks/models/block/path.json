@@ -1,6 +1,22 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "render_type": "minecraft:cutout",
+  "parent": "minecraft:block/block",
   "textures": {
-    "all": "openblocks:block/path"
-  }
+    "all": "openblocks:block/path",
+    "particle": "openblocks:block/path"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 1.6, 16],
+      "faces": {
+        "down": { "uv": [0, 0, 16, 16], "texture": "#all", "cullface": "down" },
+        "up": { "uv": [0, 0, 16, 16], "texture": "#all" },
+        "north": { "uv": [0, 14, 16, 16], "texture": "#all", "cullface": "north" },
+        "south": { "uv": [0, 14, 16, 16], "texture": "#all", "cullface": "south" },
+        "west": { "uv": [0, 14, 16, 16], "texture": "#all", "cullface": "west" },
+        "east": { "uv": [0, 14, 16, 16], "texture": "#all", "cullface": "east" }
+      }
+    }
+  ]
 }

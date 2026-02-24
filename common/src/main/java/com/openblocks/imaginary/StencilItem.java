@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.CustomModelData;
 
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class StencilItem extends Item {
         CompoundTag tag = new CompoundTag();
         tag.putInt("Pattern", pattern.ordinal());
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(pattern.ordinal() + 1));
         return stack;
     }
 }

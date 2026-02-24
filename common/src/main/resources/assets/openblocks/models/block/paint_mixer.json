@@ -1,7 +1,8 @@
 {
+  "render_type": "minecraft:cutout",
   "parent": "minecraft:block/block",
   "textures": {
-    "model": "openblocks:models/paint_mixer",
+    "model": "openblocks:block/paint_mixer_body",
     "particle": "openblocks:block/paint_mixer"
   },
   "elements": [

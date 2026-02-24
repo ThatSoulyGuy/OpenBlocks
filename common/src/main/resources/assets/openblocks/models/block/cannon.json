@@ -1,6 +1,83 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/block",
   "textures": {
-    "all": "openblocks:block/cannon"
-  }
+    "all": "openblocks:block/cannon",
+    "particle": "openblocks:block/cannon"
+  },
+  "elements": [
+    {
+      "name": "base",
+      "from": [2, 0, 3],
+      "to": [14, 3, 14],
+      "faces": {
+        "down": {"uv": [2, 3, 14, 14], "texture": "#all", "cullface": "down"},
+        "up": {"uv": [2, 3, 14, 14], "texture": "#all"},
+        "north": {"uv": [2, 13, 14, 16], "texture": "#all"},
+        "south": {"uv": [2, 13, 14, 16], "texture": "#all"},
+        "west": {"uv": [3, 13, 14, 16], "texture": "#all"},
+        "east": {"uv": [3, 13, 14, 16], "texture": "#all"}
+      }
+    },
+    {
+      "name": "support_left",
+      "from": [3, 3, 7],
+      "to": [5, 9, 14],
+      "faces": {
+        "up": {"uv": [3, 7, 5, 14], "texture": "#all"},
+        "north": {"uv": [3, 7, 5, 13], "texture": "#all"},
+        "south": {"uv": [3, 7, 5, 13], "texture": "#all"},
+        "west": {"uv": [7, 7, 14, 13], "texture": "#all"},
+        "east": {"uv": [7, 7, 14, 13], "texture": "#all"}
+      }
+    },
+    {
+      "name": "support_right",
+      "from": [11, 3, 7],
+      "to": [13, 9, 14],
+      "faces": {
+        "up": {"uv": [11, 7, 13, 14], "texture": "#all"},
+        "north": {"uv": [11, 7, 13, 13], "texture": "#all"},
+        "south": {"uv": [11, 7, 13, 13], "texture": "#all"},
+        "west": {"uv": [7, 7, 14, 13], "texture": "#all"},
+        "east": {"uv": [7, 7, 14, 13], "texture": "#all"}
+      }
+    },
+    {
+      "name": "barrel",
+      "from": [5, 4, -1],
+      "to": [11, 10, 13],
+      "faces": {
+        "up": {"uv": [5, 0, 11, 14], "texture": "#all"},
+        "down": {"uv": [5, 0, 11, 14], "texture": "#all"},
+        "north": {"uv": [5, 6, 11, 12], "texture": "#all"},
+        "south": {"uv": [5, 6, 11, 12], "texture": "#all"},
+        "west": {"uv": [0, 6, 14, 12], "texture": "#all"},
+        "east": {"uv": [0, 6, 14, 12], "texture": "#all"}
+      }
+    },
+    {
+      "name": "muzzle",
+      "from": [4, 3, -3],
+      "to": [12, 11, 0],
+      "faces": {
+        "down": {"uv": [4, 0, 12, 3], "texture": "#all"},
+        "up": {"uv": [4, 0, 12, 3], "texture": "#all"},
+        "north": {"uv": [4, 5, 12, 13], "texture": "#all"},
+        "west": {"uv": [0, 5, 3, 13], "texture": "#all"},
+        "east": {"uv": [0, 5, 3, 13], "texture": "#all"}
+      }
+    },
+    {
+      "name": "breech",
+      "from": [4, 3, 12],
+      "to": [12, 11, 15],
+      "faces": {
+        "down": {"uv": [4, 12, 12, 15], "texture": "#all"},
+        "up": {"uv": [4, 12, 12, 15], "texture": "#all"},
+        "south": {"uv": [4, 5, 12, 13], "texture": "#all"},
+        "west": {"uv": [12, 5, 15, 13], "texture": "#all"},
+        "east": {"uv": [12, 5, 15, 13], "texture": "#all"}
+      }
+    }
+  ]
 }
