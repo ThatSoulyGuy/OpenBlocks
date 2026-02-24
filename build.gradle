@@ -28,6 +28,12 @@ subprojects {
         mavenCentral()
     }
 
+    configurations.all {
+        resolutionStrategy {
+            force 'dev.architectury:architectury-transformer:5.2.88'
+        }
+    }
+
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings loom.layered() {
