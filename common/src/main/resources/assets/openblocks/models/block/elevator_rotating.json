@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "openblocks:block/elevator"
+    "all": "openblocks:block/elevator_rotating"
   },
   "elements": [
     {

@@ -29,6 +29,8 @@
   "openblocks.gui.autoextract": "Auto extract",
   "openblocks.gui.autodrink": "Auto drink",
   "openblocks.gui.autoenchantmenttable": "Auto Enchantment Table",
+  "openblocks.gui.power": "Power: %s",
+  "openblocks.gui.enchant_level": "Level: %s",
   "openblocks.gui.donationstation": "Donation Station",
   "openblocks.gui.itemdropper": "Item Dropper",
   "openblocks.gui.blockplacer": "Block Placer",
@@ -433,6 +435,9 @@
   "item.openblocks.unprepared_stencil": "Unprepared Stencil",
   "item.openblocks.stencil": "Stencil",
   "item.openblocks.stencil.patterned": "%s Stencil",
+  "item.openblocks.glyph": "Glyph",
+  "item.openblocks.glyph.with_char": "'%s' Glyph",
+  "entity.openblocks.glyph": "Glyph",
 
   "openblocks.stencil.creeper_face": "Creeper Face",
   "openblocks.stencil.border": "Border",

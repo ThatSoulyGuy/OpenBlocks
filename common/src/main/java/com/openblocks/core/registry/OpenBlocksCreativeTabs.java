@@ -1,7 +1,11 @@
 package com.openblocks.core.registry;
 
 import com.openblocks.OpenBlocksConstants;
+import com.openblocks.canvas.PaintBrushItem;
 import com.openblocks.core.util.ColorMeta;
+import com.openblocks.elevator.ElevatorBlock;
+import com.openblocks.elevator.ElevatorRotatingBlock;
+import com.openblocks.glyph.GlyphItem;
 import com.openblocks.imaginary.ImaginaryBlockItem;
 import com.openblocks.imaginary.StencilItem;
 import com.openblocks.imaginary.StencilPattern;
@@ -10,10 +14,13 @@ import com.openblocks.trophy.TrophyType;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 
 public final class OpenBlocksCreativeTabs {
 
@@ -41,9 +48,18 @@ public final class OpenBlocksCreativeTabs {
     }
 
     private static void populateItems(CreativeModeTab.Output output) {
-        // Blocks
-        safeAccept(output, new ItemStack(OpenBlocksItems.ELEVATOR.get()));
-        safeAccept(output, new ItemStack(OpenBlocksItems.ELEVATOR_ROTATING.get()));
+        // Elevator — all 16 color variants
+        for (DyeColor color : DyeColor.values()) {
+            ItemStack elevator = new ItemStack(OpenBlocksItems.ELEVATOR.get());
+            elevator.set(DataComponents.BLOCK_STATE,
+                    BlockItemStateProperties.EMPTY.with(ElevatorBlock.COLOR, color));
+            safeAccept(output, elevator);
+        }
+        // Elevator Rotating — all 16 color variants
+        for (DyeColor color : DyeColor.values()) {
+            safeAccept(output, ElevatorRotatingBlock.createColoredStack(
+                    OpenBlocksItems.ELEVATOR_ROTATING.get(), color));
+        }
         safeAccept(output, new ItemStack(OpenBlocksItems.LADDER.get()));
         safeAccept(output, new ItemStack(OpenBlocksItems.ROPE_LADDER.get()));
         safeAccept(output, new ItemStack(OpenBlocksItems.PATH.get()));
@@ -97,7 +113,13 @@ public final class OpenBlocksCreativeTabs {
         safeAccept(output, new ItemStack(OpenBlocksItems.CANVAS_GLASS.get()));
         safeAccept(output, new ItemStack(OpenBlocksItems.PAINT_CAN_ITEM.get()));
         safeAccept(output, new ItemStack(OpenBlocksItems.PAINT_MIXER.get()));
+        // Paint brush — empty + all 16 color variants
         safeAccept(output, new ItemStack(OpenBlocksItems.PAINT_BRUSH.get()));
+        for (ColorMeta color : ColorMeta.values()) {
+            ItemStack brush = new ItemStack(OpenBlocksItems.PAINT_BRUSH.get());
+            PaintBrushItem.setColor(brush, 0xFF000000 | color.getRgb());
+            safeAccept(output, brush);
+        }
         safeAccept(output, new ItemStack(OpenBlocksItems.SQUEEGEE.get()));
 
         // Phase 7: Interaction Items
@@ -124,6 +146,11 @@ public final class OpenBlocksCreativeTabs {
         // Stencil variants
         for (StencilPattern pattern : StencilPattern.values()) {
             safeAccept(output, StencilItem.createStencil(pattern));
+        }
+
+        // Glyph variants (0-9)
+        for (char ch : GlyphItem.DISPLAY_CHARS) {
+            safeAccept(output, GlyphItem.createGlyphForDisplay(ch));
         }
 
         // Phase 9: Golden Egg + Projector

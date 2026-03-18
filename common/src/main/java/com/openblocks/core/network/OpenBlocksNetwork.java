@@ -11,6 +11,9 @@ import com.openblocks.imaginary.DrawingTableActionPacket;
 import com.openblocks.imaginary.DrawingTableBlockEntity;
 import com.openblocks.interaction.CannonBlockEntity;
 import com.openblocks.interaction.CannonControlPacket;
+import com.openblocks.canvas.PaintChunkS2CPacket;
+import com.openblocks.canvas.PaintClientCache;
+import com.openblocks.canvas.PaintUpdateS2CPacket;
 import com.openblocks.tank.TankFluidSyncPacket;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.core.Direction;
@@ -114,6 +117,22 @@ public final class OpenBlocksNetwork {
                     // Client-side handling is done via block entity data sync
                     // This packet serves as an additional sync mechanism for large fluid changes
                 }
+        );
+
+        // Paint: S2C packet for single block paint update
+        NetworkManager.registerReceiver(
+                NetworkManager.s2c(),
+                PaintUpdateS2CPacket.TYPE,
+                PaintUpdateS2CPacket.STREAM_CODEC,
+                (packet, context) -> PaintClientCache.handleUpdate(packet)
+        );
+
+        // Paint: S2C packet for bulk chunk paint data
+        NetworkManager.registerReceiver(
+                NetworkManager.s2c(),
+                PaintChunkS2CPacket.TYPE,
+                PaintChunkS2CPacket.STREAM_CODEC,
+                (packet, context) -> PaintClientCache.handleChunkData(packet)
         );
     }
 

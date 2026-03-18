@@ -17,6 +17,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -44,6 +45,28 @@ public class AutoAnvilBlockEntity extends OpenBlocksBlockEntity implements Conta
 
     private final NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
     private int cooldown = 0;
+
+    private final ContainerData dataAccess = new ContainerData() {
+        @Override
+        public int get(int index) {
+            TankBlockEntity tank = getTankBelow();
+            return switch (index) {
+                case 0 -> tank != null ? FluidXpUtils.fluidToXp(tank.getAmount()) : 0;
+                case 1 -> tank != null ? FluidXpUtils.fluidToXp(tank.getCapacity()) : 0;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {}
+
+        @Override
+        public int getCount() { return 2; }
+    };
+
+    public ContainerData getDataAccess() {
+        return dataAccess;
+    }
 
     public AutoAnvilBlockEntity(BlockPos pos, BlockState state) {
         super(OpenBlocksBlockEntities.AUTO_ANVIL.get(), pos, state);
@@ -196,7 +219,7 @@ public class AutoAnvilBlockEntity extends OpenBlocksBlockEntity implements Conta
 
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        return new AutoAnvilMenu(containerId, playerInventory, this);
+        return new AutoAnvilMenu(containerId, playerInventory, this, dataAccess);
     }
 
     // --- NBT ---

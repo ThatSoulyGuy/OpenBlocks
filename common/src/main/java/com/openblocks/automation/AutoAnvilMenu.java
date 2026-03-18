@@ -7,19 +7,23 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 
 public class AutoAnvilMenu extends OpenBlocksContainerMenu {
 
     private final Container container;
+    private final ContainerData data;
 
     public AutoAnvilMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, new SimpleContainer(3));
+        this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(2));
     }
 
-    public AutoAnvilMenu(int containerId, Inventory playerInventory, Container container) {
+    public AutoAnvilMenu(int containerId, Inventory playerInventory, Container container, ContainerData data) {
         super(OpenBlocksMenus.AUTO_ANVIL.get(), containerId);
         this.container = container;
+        this.data = data;
         container.startOpen(playerInventory.player);
 
         addSlot(new Slot(container, 0, 27, 35));           // Tool
@@ -27,7 +31,11 @@ public class AutoAnvilMenu extends OpenBlocksContainerMenu {
         addSlot(new RestrictedSlot(container, 2, 134, 35, stack -> false)); // Output
 
         addPlayerInventorySlots(playerInventory, 8, 84);
+        addDataSlots(data);
     }
+
+    public int getStoredXp() { return data.get(0); }
+    public int getMaxXp() { return data.get(1); }
 
     @Override
     public boolean stillValid(Player player) {

@@ -11,6 +11,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -19,6 +20,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -46,11 +48,47 @@ public class AutoEnchantmentTableBlockEntity extends OpenBlocksBlockEntity imple
     private static final int OUTPUT_SLOT = 2;
     private static final int COOLDOWN_TICKS = 60;
     private static final int POWER_CHECK_INTERVAL = 20;
+    private static final RandomSource BOOK_RANDOM = RandomSource.create();
 
     private final NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
     private int cooldown = 0;
     private int cachedPower = 0;
     private int powerCheckTimer = 0;
+
+    private final ContainerData dataAccess = new ContainerData() {
+        @Override
+        public int get(int index) {
+            TankBlockEntity tank = getTankBelow();
+            return switch (index) {
+                case 0 -> tank != null ? FluidXpUtils.fluidToXp(tank.getAmount()) : 0;
+                case 1 -> tank != null ? FluidXpUtils.fluidToXp(tank.getCapacity()) : 0;
+                case 2 -> cachedPower;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {}
+
+        @Override
+        public int getCount() { return 3; }
+    };
+
+    public ContainerData getDataAccess() {
+        return dataAccess;
+    }
+
+    // Book animation state (client-side only, mirrors vanilla EnchantingTableBlockEntity)
+    public int time;
+    public float flip;
+    public float oFlip;
+    public float flipT;
+    public float flipA;
+    public float open;
+    public float oOpen;
+    public float rot;
+    public float oRot;
+    public float tRot;
 
     public AutoEnchantmentTableBlockEntity(BlockPos pos, BlockState state) {
         super(OpenBlocksBlockEntities.AUTO_ENCHANTMENT_TABLE.get(), pos, state);
@@ -80,6 +118,49 @@ public class AutoEnchantmentTableBlockEntity extends OpenBlocksBlockEntity imple
         if (be.items.get(LAPIS_SLOT).isEmpty() || !be.items.get(LAPIS_SLOT).is(Items.LAPIS_LAZULI)) return;
 
         be.tryEnchant(level);
+    }
+
+    public static void clientTick(Level level, BlockPos pos, BlockState state, AutoEnchantmentTableBlockEntity be) {
+        be.oOpen = be.open;
+        be.oRot = be.rot;
+
+        Player player = level.getNearestPlayer(
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0, false);
+
+        if (player != null) {
+            double dx = player.getX() - (pos.getX() + 0.5);
+            double dz = player.getZ() - (pos.getZ() + 0.5);
+            be.tRot = (float) Mth.atan2(dz, dx);
+            be.open += 0.1f;
+
+            if (be.open < 0.5f || BOOK_RANDOM.nextInt(40) == 0) {
+                float old = be.flipT;
+                do {
+                    be.flipT += BOOK_RANDOM.nextInt(4) - BOOK_RANDOM.nextInt(4);
+                } while (old == be.flipT);
+            }
+        } else {
+            be.tRot += 0.02f;
+            be.open -= 0.1f;
+        }
+
+        while (be.rot >= (float) Math.PI) be.rot -= (float) Math.PI * 2f;
+        while (be.rot < -(float) Math.PI) be.rot += (float) Math.PI * 2f;
+        while (be.tRot >= (float) Math.PI) be.tRot -= (float) Math.PI * 2f;
+        while (be.tRot < -(float) Math.PI) be.tRot += (float) Math.PI * 2f;
+
+        float delta = be.tRot - be.rot;
+        while (delta >= (float) Math.PI) delta -= (float) Math.PI * 2f;
+        while (delta < -(float) Math.PI) delta += (float) Math.PI * 2f;
+
+        be.rot += delta * 0.4f;
+        be.open = Mth.clamp(be.open, 0.0f, 1.0f);
+        be.time++;
+        be.oFlip = be.flip;
+        float f = (be.flipT - be.flip) * 0.4f;
+        f = Mth.clamp(f, -0.2f, 0.2f);
+        be.flipA += (f - be.flipA) * 0.9f;
+        be.flip += be.flipA;
     }
 
     private void tryEnchant(Level level) {
@@ -216,7 +297,7 @@ public class AutoEnchantmentTableBlockEntity extends OpenBlocksBlockEntity imple
 
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        return new AutoEnchantmentTableMenu(containerId, playerInventory, this);
+        return new AutoEnchantmentTableMenu(containerId, playerInventory, this, dataAccess);
     }
 
     // --- NBT ---

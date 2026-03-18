@@ -3,6 +3,7 @@ package com.openblocks.elevator;
 import com.openblocks.core.config.OpenBlocksConfig;
 import com.openblocks.core.registry.OpenBlocksSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -94,9 +95,8 @@ public final class ElevatorActionHandler {
                     PlayerRotation rotation = targetElevator.getElevatorRotation(level, searchPos, searchState);
                     float yRot = rotation.shouldRotate() ? rotation.getYRot() : player.getYRot();
 
-                    player.teleportTo(targetX, targetY, targetZ);
-                    player.setYRot(yRot);
-                    player.setXRot(player.getXRot());
+                    player.teleportTo((ServerLevel) level, targetX, targetY, targetZ,
+                            yRot, player.getXRot());
 
                     // Play sound
                     level.playSound(null, searchPos, OpenBlocksSounds.ELEVATOR_ACTIVATE.get(),

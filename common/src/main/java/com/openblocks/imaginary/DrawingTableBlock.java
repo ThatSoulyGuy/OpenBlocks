@@ -2,11 +2,11 @@ package com.openblocks.imaginary;
 
 import com.mojang.serialization.MapCodec;
 import com.openblocks.core.base.OpenBlocksEntityBlock;
+import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -42,8 +42,9 @@ public class DrawingTableBlock extends OpenBlocksEntityBlock {
             return InteractionResult.SUCCESS;
         }
 
-        if (level.getBlockEntity(pos) instanceof MenuProvider menuProvider) {
-            player.openMenu(menuProvider);
+        if (level.getBlockEntity(pos) instanceof DrawingTableBlockEntity table
+                && player instanceof ServerPlayer serverPlayer) {
+            MenuRegistry.openExtendedMenu(serverPlayer, table, buf -> buf.writeBlockPos(pos));
         }
 
         return InteractionResult.CONSUME;

@@ -50,9 +50,12 @@ public class AutoEnchantmentTableBlock extends OpenBlocksEntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide() ? null :
-                createTickerHelper(type, OpenBlocksBlockEntities.AUTO_ENCHANTMENT_TABLE.get(),
-                        AutoEnchantmentTableBlockEntity::tick);
+        if (level.isClientSide()) {
+            return createTickerHelper(type, OpenBlocksBlockEntities.AUTO_ENCHANTMENT_TABLE.get(),
+                    AutoEnchantmentTableBlockEntity::clientTick);
+        }
+        return createTickerHelper(type, OpenBlocksBlockEntities.AUTO_ENCHANTMENT_TABLE.get(),
+                AutoEnchantmentTableBlockEntity::tick);
     }
 
     @Override

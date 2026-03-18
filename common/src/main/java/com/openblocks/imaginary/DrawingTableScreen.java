@@ -5,7 +5,6 @@ import com.openblocks.core.gui.OpenBlocksContainerScreen;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,22 +17,8 @@ public class DrawingTableScreen extends OpenBlocksContainerScreen<DrawingTableMe
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             OpenBlocksConstants.MOD_ID, "textures/gui/drawing_table.png");
 
-    private final BlockPos blockPos;
-
     public DrawingTableScreen(DrawingTableMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
-        // Try to get block position from the container's BE
-        this.blockPos = findBlockPos(menu);
-    }
-
-    private static BlockPos findBlockPos(DrawingTableMenu menu) {
-        if (menu.slots.size() > 0) {
-            var slot = menu.getSlot(0);
-            if (slot.container instanceof DrawingTableBlockEntity be) {
-                return be.getBlockPos();
-            }
-        }
-        return BlockPos.ZERO;
     }
 
     @Override
@@ -45,12 +30,12 @@ public class DrawingTableScreen extends OpenBlocksContainerScreen<DrawingTableMe
 
         // Up button (previous pattern)
         addRenderableWidget(Button.builder(Component.literal("\u25B2"), b -> {
-            NetworkManager.sendToServer(new DrawingTableActionPacket(blockPos, DrawingTableActionPacket.ACTION_PREV));
+            NetworkManager.sendToServer(new DrawingTableActionPacket(menu.getBlockPos(), DrawingTableActionPacket.ACTION_PREV));
         }).bounds(buttonX, buttonY, 20, 14).build());
 
         // Down button (next pattern)
         addRenderableWidget(Button.builder(Component.literal("\u25BC"), b -> {
-            NetworkManager.sendToServer(new DrawingTableActionPacket(blockPos, DrawingTableActionPacket.ACTION_NEXT));
+            NetworkManager.sendToServer(new DrawingTableActionPacket(menu.getBlockPos(), DrawingTableActionPacket.ACTION_NEXT));
         }).bounds(buttonX, buttonY + 28, 20, 14).build());
     }
 

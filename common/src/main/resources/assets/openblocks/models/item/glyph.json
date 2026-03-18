@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "openblocks:item/glyph"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "openblocks:item/glyph_0" },
+    { "predicate": { "custom_model_data": 2 }, "model": "openblocks:item/glyph_1" },
+    { "predicate": { "custom_model_data": 3 }, "model": "openblocks:item/glyph_2" },
+    { "predicate": { "custom_model_data": 4 }, "model": "openblocks:item/glyph_3" },
+    { "predicate": { "custom_model_data": 5 }, "model": "openblocks:item/glyph_4" },
+    { "predicate": { "custom_model_data": 6 }, "model": "openblocks:item/glyph_5" },
+    { "predicate": { "custom_model_data": 7 }, "model": "openblocks:item/glyph_6" },
+    { "predicate": { "custom_model_data": 8 }, "model": "openblocks:item/glyph_7" },
+    { "predicate": { "custom_model_data": 9 }, "model": "openblocks:item/glyph_8" },
+    { "predicate": { "custom_model_data": 10 }, "model": "openblocks:item/glyph_9" }
+  ]
+}

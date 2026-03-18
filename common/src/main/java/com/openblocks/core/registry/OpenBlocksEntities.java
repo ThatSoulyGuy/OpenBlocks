@@ -2,6 +2,7 @@ package com.openblocks.core.registry;
 
 import com.openblocks.OpenBlocksConstants;
 import com.openblocks.entity.*;
+import com.openblocks.glyph.GlyphEntity;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
@@ -60,6 +61,14 @@ public final class OpenBlocksEntities {
                             .clientTrackingRange(64)
                             .updateInterval(1)
                             .build("magnet"));
+
+    public static final RegistrySupplier<EntityType<GlyphEntity>> GLYPH =
+            ENTITIES.register("glyph", () ->
+                    EntityType.Builder.<GlyphEntity>of(GlyphEntity::new, MobCategory.MISC)
+                            .sized(0.5f, 0.5f)
+                            .clientTrackingRange(160)
+                            .updateInterval(Integer.MAX_VALUE)
+                            .build("glyph"));
 
     public static void register() {
         ENTITIES.register();

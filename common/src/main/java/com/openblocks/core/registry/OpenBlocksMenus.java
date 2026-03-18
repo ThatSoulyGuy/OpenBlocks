@@ -5,6 +5,7 @@ import com.openblocks.automation.*;
 import com.openblocks.imaginary.DrawingTableMenu;
 import com.openblocks.interaction.DevNullMenu;
 import com.openblocks.interaction.DonationStationMenu;
+import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
@@ -46,7 +47,7 @@ public final class OpenBlocksMenus {
 
     public static final RegistrySupplier<MenuType<DrawingTableMenu>> DRAWING_TABLE =
             MENUS.register("drawing_table",
-                    () -> new MenuType<>(DrawingTableMenu::new, FeatureFlags.DEFAULT_FLAGS));
+                    () -> MenuRegistry.ofExtended(DrawingTableMenu::new));
 
     public static void register() {
         MENUS.register();

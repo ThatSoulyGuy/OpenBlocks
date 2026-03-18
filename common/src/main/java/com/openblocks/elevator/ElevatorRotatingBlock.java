@@ -5,13 +5,17 @@ import com.openblocks.core.base.OpenBlocksEntityBlock;
 import com.openblocks.core.registry.OpenBlocksBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -90,6 +94,42 @@ public class ElevatorRotatingBlock extends OpenBlocksEntityBlock implements IEle
     }
 
     @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state,
+                            @Nullable LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (!level.isClientSide()) {
+            DyeColor color = getItemColor(stack);
+            if (color != null && level.getBlockEntity(pos) instanceof ElevatorRotatingBlockEntity be) {
+                be.setColor(color);
+            }
+        }
+    }
+
+    /** Key used to store elevator color in CUSTOM_DATA on item stacks. */
+    public static final String COLOR_TAG = "elevator_color";
+
+    /** Read the color stored on an item stack, or null if none. */
+    public static @Nullable DyeColor getItemColor(ItemStack stack) {
+        CustomData data = stack.get(DataComponents.CUSTOM_DATA);
+        if (data != null) {
+            CompoundTag tag = data.copyTag();
+            if (tag.contains(COLOR_TAG)) {
+                return DyeColor.byId(tag.getInt(COLOR_TAG));
+            }
+        }
+        return null;
+    }
+
+    /** Create an item stack with the given color stored in CUSTOM_DATA. */
+    public static ItemStack createColoredStack(net.minecraft.world.item.Item item, DyeColor color) {
+        ItemStack stack = new ItemStack(item);
+        CompoundTag tag = new CompoundTag();
+        tag.putInt(COLOR_TAG, color.getId());
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+        return stack;
+    }
+
+    @Override
     public DyeColor getElevatorColor(Level level, BlockPos pos, BlockState state) {
         if (level.getBlockEntity(pos) instanceof ElevatorRotatingBlockEntity be) {
             return be.getColor();
@@ -100,11 +140,13 @@ public class ElevatorRotatingBlock extends OpenBlocksEntityBlock implements IEle
     @Override
     public PlayerRotation getElevatorRotation(Level level, BlockPos pos, BlockState state) {
         Direction facing = state.getValue(FACING);
+        // The model rotation makes the arrow point opposite to FACING,
+        // so we invert the mapping to match the visual arrow direction.
         return switch (facing) {
-            case NORTH -> PlayerRotation.NORTH;
-            case SOUTH -> PlayerRotation.SOUTH;
-            case EAST -> PlayerRotation.EAST;
-            case WEST -> PlayerRotation.WEST;
+            case NORTH -> PlayerRotation.SOUTH;
+            case SOUTH -> PlayerRotation.NORTH;
+            case EAST -> PlayerRotation.WEST;
+            case WEST -> PlayerRotation.EAST;
             default -> PlayerRotation.NONE;
         };
     }

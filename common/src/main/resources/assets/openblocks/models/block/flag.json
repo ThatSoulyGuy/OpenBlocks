@@ -1,10 +1,8 @@
 {
-  "render_type": "minecraft:cutout",
   "parent": "minecraft:block/block",
   "textures": {
-    "flag": "openblocks:block/flag",
     "pole": "openblocks:block/flagpole",
-    "particle": "openblocks:block/flag"
+    "particle": "openblocks:block/flagpole"
   },
   "elements": [
     {
@@ -18,15 +16,6 @@
         "west": {"uv": [1, 0, 2, 16], "texture": "#pole"},
         "up": {"uv": [4, 0, 5, 1], "texture": "#pole", "cullface": "up"},
         "down": {"uv": [5, 0, 6, 1], "texture": "#pole", "cullface": "down"}
-      }
-    },
-    {
-      "name": "flag",
-      "from": [8, 6, -5],
-      "to": [8, 15, 8],
-      "faces": {
-        "east": {"uv": [0, 1, 13, 10], "texture": "#flag", "tintindex": 0},
-        "west": {"uv": [0, 1, 13, 10], "texture": "#flag", "tintindex": 0, "rotation": 180}
       }
     }
   ]

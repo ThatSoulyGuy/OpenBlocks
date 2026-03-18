@@ -4,6 +4,7 @@ import com.openblocks.OpenBlocksConstants;
 import com.openblocks.canvas.PaintBrushItem;
 import com.openblocks.canvas.SqueegeeItem;
 import com.openblocks.entity.*;
+import com.openblocks.glyph.GlyphItem;
 import com.openblocks.imaginary.ImaginaryBlockItem;
 import com.openblocks.imaginary.StencilItem;
 import com.openblocks.imaginary.UnpreparedStencilItem;
@@ -234,6 +235,9 @@ public final class OpenBlocksItems {
 
     public static final RegistrySupplier<Item> STENCIL = ITEMS.register("stencil",
             () -> new StencilItem(new Item.Properties()));
+
+    public static final RegistrySupplier<Item> GLYPH = ITEMS.register("glyph",
+            () -> new GlyphItem(new Item.Properties()));
 
     // --- Phase 9: Trophy ---
 

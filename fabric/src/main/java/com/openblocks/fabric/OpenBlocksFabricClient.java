@@ -1,10 +1,14 @@
 package com.openblocks.fabric;
 
 import com.openblocks.OpenBlocksClient;
+import com.openblocks.canvas.PaintOverlayRenderer;
+import com.openblocks.glyph.GlyphPlacementRenderer;
 import com.openblocks.core.registry.OpenBlocksItems;
 import com.openblocks.trophy.TrophyItemRendererHelper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.minecraft.client.renderer.MultiBufferSource;
 
 public final class OpenBlocksFabricClient implements ClientModInitializer {
 
@@ -16,5 +20,13 @@ public final class OpenBlocksFabricClient implements ClientModInitializer {
         BuiltinItemRendererRegistry.INSTANCE.register(OpenBlocksItems.TROPHY.get(),
                 (stack, mode, matrices, vertexConsumers, light, overlay) ->
                         TrophyItemRendererHelper.renderTrophyItem(stack, mode, matrices, vertexConsumers, light, overlay));
+
+        // Paint overlay rendering for non-canvas blocks
+        WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
+            if (context.consumers() instanceof MultiBufferSource.BufferSource bufferSource) {
+                PaintOverlayRenderer.renderAllPaint(context.matrixStack(), context.camera(), bufferSource);
+                GlyphPlacementRenderer.render(context.matrixStack(), context.camera(), bufferSource);
+            }
+        });
     }
 }
